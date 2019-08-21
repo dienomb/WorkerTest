@@ -27,15 +27,17 @@ namespace WorkerTest.Services
             for (var i = 0; i < 100; i++)
             {
                 var j = i;
+                var random = new Random();
                 var service = "Servis1";
-                if (i <= 50)
+                if (i <= random.Next(1, 100))
                     service = "";
                 TaskQueue.QueueBackgroundWorkItem(async token =>
                 {
                     //var random = new Random();
                     //await Task.Delay(random.Next(50, 1000), token);
-                    _logger.LogInformation($"Event {j}");
                     await this.testService(service).DoSomething(token);
+                    _logger.LogInformation($"Event {j} Service {service}");
+
                 });
             }
 

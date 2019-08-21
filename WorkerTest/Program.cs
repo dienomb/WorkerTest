@@ -36,6 +36,7 @@ namespace WorkerTest
                     //services.AddSingleton<MonitorLoop>();
 
                     #region snippet1
+                    services.AddHostedService<ChannelSample>();
                     //services.AddHostedService<TimedHostedService>();
                     #endregion
 
@@ -45,20 +46,20 @@ namespace WorkerTest
                     #endregion
 
                     #region snippet3
-                    services.AddHostedService<QueuedHostedService>();
-                    services.AddSingleton<TestService>();
-                    services.AddSingleton<TestService2>();
-                    services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
-                    services.AddSingleton<Func<string, ITestService>>(serviceProvider => key =>
-                    {
-                        switch (key)
-                        {
-                            case "Servis1":
-                                return serviceProvider.GetRequiredService<TestService>();
-                            default:
-                                return serviceProvider.GetRequiredService<TestService2>();
-                        }
-                    });
+                    //services.AddHostedService<QueuedHostedService>();
+                    //services.AddSingleton<TestService>();
+                    //services.AddSingleton<TestService2>();
+                    //services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+                    //services.AddSingleton<Func<string, ITestService>>(serviceProvider => key =>
+                    //{
+                    //    switch (key)
+                    //    {
+                    //        case "Servis1":
+                    //            return serviceProvider.GetRequiredService<TestService>();
+                    //        default:
+                    //            return serviceProvider.GetRequiredService<TestService2>();
+                    //    }
+                    //});
                     #endregion
                 })
                 .UseConsoleLifetime()
